@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 5 — Custom Element</title>
+</head>
+<body>
+    <header>
+        <h1>My Custom Element</h1>
+    </header>
+
+    <main>
+        <x-center>
+            <h2>Why I love Marvel Movies</h2>
+            <p>
+                I love Marvel movies because of it's cohesive storytelling.
+                Every movie plays a role in an overarching narrative which makes
+                the finale movie, Avengers: Infinity War and Avengers: Endgame a lot
+                more exciting. 
+
+            </p>
+        </x-center>
+
+        <x-center>
+            <h2>My Favourite Marvel Superhero</h2>
+            <p>
+                Captain America's heroism and bravery stand out to me
+                the most, which is why he's my favourite. He is an 
+                inspiration and someone I can look up to. 
+            </p>
+        </x-center>
+    </main>
+
+    <footer>
+        <p>Taran Singh - Lab 5 - UX220</p>
+    </footer>
+
+    <script>
+        class XCenter extends HTMLElement {
+            connectedCallback() {
+                if (this.hasRendered) {
+                    return;
+                }
+
+                this.hasRendered = true;
+
+                const content = this.innerHTML;
+
+                this.innerHTML = `
+                    <div style="
+                        text-align: center;
+                        background-color: lightgray;
+                        color: darkblue;
+                        padding: 20px;
+                        margin: 20px auto;
+                    ">
+                        ${content}
+                    </div>
+                `;
+            }
+        }
+
+        customElements.define("x-center", XCenter);
+    </script>
+</body>
+</html>
